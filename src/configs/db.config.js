@@ -11,7 +11,7 @@ const MONGO_CONN_URL = mongoConnUrl(dbConfig);
 const RETRY_BASE_INTERVAL = 2000;
 const MAX_RETRIES = 5;
 
-async function establishDbConnection(attempt = 1) {
+async function establishConnection(attempt = 1) {
   try {
     const { connection_timeout, socket_timeout } = dbConfig;
     await mongoose.connect(MONGO_CONN_URL, {
@@ -33,7 +33,7 @@ async function establishDbConnection(attempt = 1) {
       let sleepTime = exponentialBackoff + jitter;
 
       console.log(`Retrying in ${sleepTime / 1000} seconds...`);
-      setTimeout(() => establishDbConnection(attempt + 1), sleepTime);
+      setTimeout(() => establishConnection(attempt + 1), sleepTime);
     } else gracefulShutdown(new Error('Max connection retries reached.'));
   }
 }
@@ -90,4 +90,4 @@ async function handleShutdown(signal) {
 process.on('SIGINT', handleShutdown.bind(null, 'SIGINT')); // interrupt signal
 process.on('SIGTERM', handleShutdown.bind(null, 'SIGTERM')); // Termination signal
 
-module.exports = { establishDbConnection };
+module.exports = { establishConnection };
