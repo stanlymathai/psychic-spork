@@ -17,7 +17,7 @@ const app = express();
 middlewares(app);
 
 // Routes
-app.use(process.env.API_ENDPOINT + '/', require('./routes'));
+// app.use(process.env.API_ENDPOINT + '/', require('./routes'));
 
 // error handler
 errorHandler(app);
