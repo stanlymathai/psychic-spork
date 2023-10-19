@@ -4,6 +4,10 @@ async function createUser(user) {
   return;
 }
 
+async function updateUser(user) {
+  return;
+}
+
 async function getUserById(userId) {
   return;
 }
@@ -14,6 +18,7 @@ async function getUserByEmail(email) {
 
 module.exports = {
   createUser,
+  updateUser,
   getUserById,
   getUserByEmail,
 };
