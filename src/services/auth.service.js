@@ -1,3 +1,5 @@
+const USER = require('../models/user.model')
+
 const ERROR_MESSAGES = require('../utils/errorMessage.util');
 
 async function register(data) {

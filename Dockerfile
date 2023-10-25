@@ -46,6 +46,19 @@ ENV DB_SOCKET_TIMEOUT ${DB_SOCKET_TIMEOUT}
 ARG DB_CONNECTION_TIMEOUT
 ENV DB_CONNECTION_TIMEOUT ${DB_CONNECTION_TIMEOUT}
 
+# aws
+ARG AWS_REGION
+ENV AWS_REGION ${AWS_REGION}
+
+ARG AWS_ACCESS_KEY_ID
+ENV AWS_ACCESS_KEY_ID ${AWS_ACCESS_KEY_ID}
+
+ARG AWS_SECRET_ACCESS_KEY
+ENV AWS_SECRET_ACCESS_KEY ${AWS_SECRET_ACCESS_KEY}
+
+ARG AWS_BUCKET_NAME
+ENV AWS_BUCKET_NAME ${AWS_BUCKET_NAME}
+
 
 # Copy node_modules from build stage
 COPY --from=build /usr/src/app/node_modules ./node_modules
@@ -54,7 +67,7 @@ COPY --from=build /usr/src/app/node_modules ./node_modules
 COPY . .
 
 # Change ownership and permissions for the uploads directory and its content
-# RUN chown -R node:node ./uploads && chmod -R 755 ./uploads
+ RUN chown -R node:node ./uploads && chmod -R 755 ./uploads
 
 # Run as non-root user for security
 USER node

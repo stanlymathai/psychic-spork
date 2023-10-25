@@ -1,10 +1,9 @@
-const router = require('express').Router();
+const router = require("express").Router();
+const { collectivesImage } = require("../middlewares/storage.middleware");
+const collectiveHandler = require("../controllers/collective.controller");
 
-const collectiveHandler = require('../controllers/collective.controller');
+const verify_token = require("../middlewares/auth.middleware");
 
-const verify_token = require('../middlewares/auth.middleware');
-
-router.post('/', verify_token, collectiveHandler.createCollective);
-router.get('/', verify_token, collectiveHandler.fetchCollective);
+router.post("/create", [collectivesImage], collectiveHandler.createCollective);
 
 module.exports = router;
