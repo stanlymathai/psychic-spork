@@ -4,8 +4,8 @@ const Follower = require("../models/followers.model");
 async function createFollowingRequest(payload) {
   try {
     const FollowerData = {
-      followingBy: payload.followingBy,
-      CollectivesId: payload.CollectivesId,
+      followingUserId: payload.followingBy,
+      collectivesId: payload.collectivesId,
     };
 
     const result = await Follower.create(FollowerData);

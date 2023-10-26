@@ -27,7 +27,17 @@ async function fetchCollectiveByAdmin(req, res) {
   }
 }
 
+async function fetchAllCollective(req, res) {
+  try {
+    const collective = await collectiveService.getAllCollectives();
+    responseHandler.sendSuccessResponse(res, collective);
+  } catch (error) {
+    return sendInternalServerError(res, error.message);
+  }
+}
+
 module.exports = {
   createCollective,
+  fetchAllCollective,
   fetchCollectiveByAdmin,
 };

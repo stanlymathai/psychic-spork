@@ -6,15 +6,15 @@ const subscribeSchema = new mongoose.Schema(
       type: String,
       required: [true, "Please add a subscribeBy"],
     },
-    CollectivesId: {
+    collectivesId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Collectives",
       required: [true, "Please add a CollectiveId"],
     },
     status: {
       type: String,
-      enum: ["APPROVE", "DISAPPROVE"],
-      default: "ACTIVE",
+      enum: ["ACTIVE", "INACTIVE", "BLOCKED", "PENDING"],
+      default: "PENDING",
     },
   },
   {

@@ -4,8 +4,8 @@ const Subscribe = require("../models/subscribe.model");
 async function createSubscribeRequest(payload) {
   try {
     const subscribeData = {
-      subscribeBy: payload.subscribeBy,
-      CollectivesId: payload.CollectivesId,
+      subscribeUserId: payload.subscribeBy,
+      collectivesId: payload.collectivesId,
     };
 
     const result = await Subscribe.create(subscribeData);

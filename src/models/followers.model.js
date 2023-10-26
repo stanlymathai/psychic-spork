@@ -6,7 +6,7 @@ const followerSchema = new mongoose.Schema(
       type: String,
       required: [true, "Please add a followingBy"],
     },
-    CollectivesId: {
+    collectivesId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Collectives",
       required: [true, "Please add a CollectiveId"],

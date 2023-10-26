@@ -76,6 +76,16 @@ async function getCollectiveByAdminId(adminId) {
   }
 }
 
+async function getAllCollectives() {
+  try {
+    const result = Collectives.find({}, "-prefrerance -createdBy");
+    return result;
+  } catch (error) {
+    console.error("Error in createCollective:", error);
+    throw error;
+  }
+}
+
 async function getCollectiveByName(name) {
   return;
 }
@@ -84,4 +94,5 @@ module.exports = {
   createCollective,
   getCollectiveByAdminId,
   getCollectiveByName,
+  getAllCollectives,
 };
