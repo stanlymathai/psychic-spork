@@ -13,6 +13,7 @@ async function createCollective(payload, profileImages, bannerImages) {
       banner: payload.banner,
       displayPriceChart: payload.displayPriceChart,
       displayBuyNow: payload.displayBuyNow,
+      listedMoniTalksExchange: payload.listedMoniTalksExchange,
     };
     const profileImagesS3 = await Promise.all(
       profileImages.map(async (item, index) => {
@@ -32,11 +33,19 @@ async function createCollective(payload, profileImages, bannerImages) {
         return s3Upload.upload;
       })
     );
-    const imageData = {
-      profile: [profileImagesS3[0]],
-      banner: [bannerImagesS3[0]],
-    };
 
+    const profileImageData = {
+      path: profileImagesS3[0],
+      createdDate: Date.now(),
+    };
+    const bannerImagesData = {
+      path: bannerImagesS3[0],
+      createdDate: Date.now(),
+    };
+    const imageData = {
+      profile: [profileImageData],
+      banner: [bannerImagesData],
+    };
     const collectiveData = {
       title: payload.title,
       image: imageData,
@@ -57,8 +66,14 @@ async function createCollective(payload, profileImages, bannerImages) {
   }
 }
 
-async function getCollectiveById(collectiveId) {
-  return;
+async function getCollectiveByAdminId(adminId) {
+  try {
+    const result = Collectives.find({ createdBy: adminId });
+    return result;
+  } catch (error) {
+    console.error("Error in createCollective:", error);
+    throw error;
+  }
 }
 
 async function getCollectiveByName(name) {
@@ -67,6 +82,6 @@ async function getCollectiveByName(name) {
 
 module.exports = {
   createCollective,
-  getCollectiveById,
+  getCollectiveByAdminId,
   getCollectiveByName,
 };

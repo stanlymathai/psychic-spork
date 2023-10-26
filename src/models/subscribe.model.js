@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const subscribeSchema = new mongoose.Schema(
   {
-    subscribeBy: {
+    subscribeUserId: {
       type: String,
       required: [true, "Please add a subscribeBy"],
     },
@@ -12,9 +12,9 @@ const subscribeSchema = new mongoose.Schema(
       required: [true, "Please add a CollectiveId"],
     },
     status: {
-      type: Boolean,
-      required: [true, "Please add a status"],
-      default: false,
+      type: String,
+      enum: ["APPROVE", "DISAPPROVE"],
+      default: "ACTIVE",
     },
   },
   {

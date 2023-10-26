@@ -10,14 +10,26 @@ const CollectiveSchema = new mongoose.Schema(
     image: {
       profile: [
         {
-          type: String,
-          default: "",
+          path: {
+            type: String,
+            default: "",
+          },
+          createdDate: {
+            type: String,
+            default: "",
+          },
         },
       ],
       banner: [
         {
-          type: String,
-          default: "",
+          path: {
+            type: String,
+            default: "",
+          },
+          createdDate: {
+            type: String,
+            default: "",
+          },
         },
       ],
     },
@@ -55,6 +67,10 @@ const CollectiveSchema = new mongoose.Schema(
         default: false,
       },
       displayBuyNow: {
+        type: Boolean,
+        default: false,
+      },
+      listedMoniTalksExchange: {
         type: Boolean,
         default: false,
       },

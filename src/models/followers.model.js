@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const followerSchema = new mongoose.Schema(
   {
-    followingBy: {
+    followingUserId: {
       type: String,
       required: [true, "Please add a followingBy"],
     },
@@ -12,9 +12,9 @@ const followerSchema = new mongoose.Schema(
       required: [true, "Please add a CollectiveId"],
     },
     status: {
-      type: Boolean,
-      required: [true, "Please add a status"],
-      default: true,
+      type: String,
+      enum: ["ACTIVE", "INACTIVE"],
+      default: "ACTIVE",
     },
   },
   {

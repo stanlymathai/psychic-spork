@@ -17,10 +17,11 @@ async function createCollective(req, res) {
   }
 }
 
-async function fetchCollective(req, res) {
+async function fetchCollectiveByAdmin(req, res) {
   try {
-    const payload = req.body;
-    responseHandler.sendSuccessResponse(res, payload);
+    const { userId } = req.query;
+    const collective = await collectiveService.getCollectiveByAdminId(userId);
+    responseHandler.sendSuccessResponse(res, collective);
   } catch (error) {
     return sendInternalServerError(res, error.message);
   }
@@ -28,5 +29,5 @@ async function fetchCollective(req, res) {
 
 module.exports = {
   createCollective,
-  fetchCollective,
+  fetchCollectiveByAdmin,
 };

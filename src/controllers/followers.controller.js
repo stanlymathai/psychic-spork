@@ -1,7 +1,7 @@
 const followerService = require("../services/followers.service");
 const responseHandler = require("../utils/responseHandlers.util");
 
-async function createRequest(req, res) {
+async function createFollowRequest(req, res) {
   try {
     const payload = req.body;
     const collective = await followerService.createFollowingRequest(payload);
@@ -12,5 +12,5 @@ async function createRequest(req, res) {
 }
 
 module.exports = {
-  createRequest,
+  createFollowRequest,
 };
