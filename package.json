@@ -1,7 +1,7 @@
 {
-  "name": "talkmoni_social_collective-service",
+  "name": "collective-service",
   "version": "1.0.0",
-  "description": "Collectives service for TalkMoni Social app.",
+  "description": "Collectives service for Social app.",
   "main": "bin/www",
   "scripts": {
     "start": "nodemon bin/www"
@@ -10,7 +10,7 @@
     "type": "git",
     "url": "https://git-codecommit.eu-west-2.amazonaws.com/v1/repos/social_collectives"
   },
-  "author": "infinexpartners",
+  "author": "stanlymathai",
   "dependencies": {
     "@aws-sdk/client-s3": "^3.435.0",
     "bcrypt": "^5.1.1",
